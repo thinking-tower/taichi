@@ -591,7 +591,7 @@ class ExternalTensorShapeAlongAxisExpression : public Expression {
   int axis;
 
   std::string serialize() override {
-    return "ExternalTensorShapeAlongAxisExpression not implemented";
+    return fmt::format("external_tensor_shape_alpng_axis({}, {})", ptr->serialize(), axis);
   }
 
   ExternalTensorShapeAlongAxisExpression(const Expr &ptr, int axis)
