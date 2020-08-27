@@ -585,4 +585,20 @@ class ConstExpression : public Expression {
   }
 };
 
+class ExternalTensorShapeAlongAxisExpression : public Expression {
+ public:
+  Expr ptr;
+  int axis;
+
+  std::string serialize() override {
+    return "ExternalTensorShapeAlongAxisExpression not implemented";
+  }
+
+  ExternalTensorShapeAlongAxisExpression(const Expr &ptr, int axis)
+      : ptr(ptr), axis(axis) {
+  }
+
+  void flatten(FlattenContext *ctx) override;
+};
+
 TLANG_NAMESPACE_END
