@@ -11,7 +11,9 @@ def test_get_external_tensor_shape_access():
     size = np.random.randint(low=1, high=10, size=(8, ))
     x = np.random.randint(low=0, high=np.prod(size), size=size, dtype=np.int32)
     for idx, i in enumerate(size):
-        assert func(x, idx) == i, "Axis {} should equal {}.".format(idx, i)
+        out = func(x, idx)
+        assert out == i, "Size of axis {} should equal {} and not {}.".format(
+            idx, i, out)
 
 
 @ti.all_archs
@@ -27,4 +29,5 @@ def test_get_external_tensor_shape_sum():
     size = np.random.randint(low=1, high=10, size=(2, ))
     x = np.random.randint(low=0, high=np.prod(size), size=size, dtype=np.int32)
     out = func(x)
-    assert out == x.sum(), "{} should equal output {}.".format(out, y)
+    y = x.sum()
+    assert out == y, "Output {} should equal {}.".format(out, y)
